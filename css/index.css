@@ -1,0 +1,130 @@
+/* ============================================
+   FICHIER : index.css
+   Rôle    : Styles pour la page index.html
+   ============================================ */
+
+/* --- 1. RESET ET BASE --- */
+/* Supprime les marges/paddings par défaut du navigateur */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Style de base pour toute la page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* --- 2. HEADER (En-tête) --- */
+header {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* --- 3. MAIN (Contenu principal) --- */
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+/* Section de recherche */
+#search-section {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+#search-section h2 {
+    margin-bottom: 1rem;
+    color: #2c3e50;
+}
+
+/* Champ de recherche */
+#search-input {
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    width: 300px;
+    margin-right: 0.5rem;
+}
+
+/* Effet au focus (quand on clique dans le champ) */
+#search-input:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+/* Bouton de recherche */
+#search-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Effet au survol du bouton */
+#search-button:hover {
+    background-color: #2980b9;
+}
+
+/* Section des résultats */
+#results-section {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#results-section h2 {
+    margin-bottom: 1rem;
+    color: #2c3e50;
+}
+
+/* Conteneur des cartes */
+#cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+/* Message placeholder */
+.placeholder {
+    color: #999;
+    font-style: italic;
+    text-align: center;
+    grid-column: 1 / -1;
+    padding: 2rem;
+}
+
+/* --- 4. FOOTER (Pied de page) --- */
+footer {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+}

@@ -1,0 +1,21 @@
+# Fichiers et dossiers à ignorer par Git
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Éditeurs de code
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Fichiers de log
+*.log
+
+# Dépendances (si on ajoute Node.js plus tard)
+node_modules/
+
+# Fichiers de build
+dist/
+build/

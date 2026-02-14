@@ -1,0 +1,17 @@
+{
+  "name": "onepiece-tcg-proxy",
+  "version": "1.0.0",
+  "description": "Proxy server for OPTCG API",
+  "main": "js/proxy.js",
+  "scripts": {
+    "start": "node js/proxy.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^4.22.1",
+    "http-proxy-middleware": "^2.0.9"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

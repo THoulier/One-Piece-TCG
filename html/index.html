@@ -3,42 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>One Piece TCG - Répertoire de Cartes</title>
-    <!-- Lien vers le fichier CSS correspondant -->
+    <title>One Piece TCG - Accueil</title>
+    <!-- CSS commun -->
+    <link rel="stylesheet" href="../css/common.css">
+    <!-- CSS spécifique -->
     <link rel="stylesheet" href="../css/index.css">
 </head>
 <body>
-    <!-- En-tête de la page -->
+    <!-- Header avec navigation -->
     <header>
-        <h1>One Piece TCG</h1>
-        <p>Répertoire et recherche de cartes</p>
+        <div class="header-content">
+            <div>
+                <h1><a href="../html/index.html">One Piece TCG</a></h1>
+                <p class="tagline">Répertoire et recherche de cartes</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../html/index.html" class="active">Accueil</a></li>
+                    <li><a href="../html/collection.html">Ma Collection</a></li>
+                    <li><a href="../html/recherche.html">Recherche</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <!-- Zone de recherche -->
+    <!-- Contenu principal -->
     <main>
-        <section id="search-section">
-            <h2>Rechercher une carte</h2>
-            <input type="text" id="search-input" placeholder="Nom de la carte...">
-            <button id="search-button">Rechercher</button>
+        <!-- Section d'accueil -->
+        <section id="welcome-section">
+            <h2>Bienvenue sur One Piece TCG Collection !</h2>
+            <p>Gérez votre collection de cartes One Piece TCG, recherchez de nouvelles cartes et suivez la valeur de votre collection.</p>
+            <div class="quick-links">
+                <a href="../html/collection.html" class="btn btn-primary">Voir ma collection</a>
+                <a href="../html/recherche.html" class="btn btn-primary">Rechercher des cartes</a>
+            </div>
         </section>
 
-        <!-- Zone d'affichage des résultats -->
-        <section id="results-section">
-            <h2>Résultats</h2>
-            <div id="cards-container">
-                <!-- Les cartes seront affichées ici par JavaScript -->
-                <p class="placeholder">Entrez une recherche pour voir les cartes...</p>
+        <!-- Section cartes en vedette (favoris) -->
+        <section id="featured-section">
+            <h2>Mes cartes favorites</h2>
+            <div id="featured-container" class="cards-grid">
+                <!-- Les cartes favorites seront affichées ici -->
+                <p class="placeholder">Aucune carte favorite. Ajoutez des cartes à vos favoris depuis votre collection !</p>
+            </div>
+        </section>
+
+        <!-- Section aperçu de la collection -->
+        <section id="preview-section">
+            <h2>Aperçu de ma collection</h2>
+            <div id="preview-container" class="cards-grid">
+                <!-- Un aperçu des dernières cartes ajoutées -->
+                <p class="placeholder">Votre collection est vide. Commencez à ajouter des cartes !</p>
+            </div>
+            <div class="section-footer">
+                <a href="../html/collection.html" class="btn btn-primary">Voir toute ma collection</a>
             </div>
         </section>
     </main>
 
-    <!-- Pied de page -->
+    <!-- Footer -->
     <footer>
         <p>Projet One Piece TCG - 2025</p>
     </footer>
 
-    <!-- Lien vers le fichier JavaScript correspondant -->
-    <!-- Le script est placé à la fin du body pour que le HTML soit chargé avant -->
+    <!-- Scripts -->
+    <script src="../js/config.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/storage.js"></script>
+    <script src="../js/api-mock.js"></script>
+    <script src="../js/api.js"></script>
     <script src="../js/index.js"></script>
 </body>
 </html>

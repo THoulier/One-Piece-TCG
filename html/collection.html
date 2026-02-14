@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ma Collection - One Piece TCG</title>
+    <!-- CSS commun -->
+    <link rel="stylesheet" href="../css/common.css">
+    <!-- CSS spécifique -->
+    <link rel="stylesheet" href="../css/collection.css">
+</head>
+<body>
+    <!-- Header avec navigation -->
+    <header>
+        <div class="header-content">
+            <div>
+                <h1><a href="../html/index.html">One Piece TCG</a></h1>
+                <p class="tagline">Répertoire et recherche de cartes</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../html/index.html">Accueil</a></li>
+                    <li><a href="../html/collection.html" class="active">Ma Collection</a></li>
+                    <li><a href="../html/recherche.html">Recherche</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contenu principal -->
+    <main>
+        <!-- Section statistiques -->
+        <section id="stats-section">
+            <h2>Ma Collection</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number" id="total-cards">0</span>
+                    <span class="stat-label">Cartes totales</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="total-value">0 €</span>
+                    <span class="stat-label">Valeur estimée</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="sets-count">0</span>
+                    <span class="stat-label">Sets différents</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section filtres et tri -->
+        <section id="collection-controls">
+            <div class="controls-row">
+                <div class="search-box">
+                    <input type="search" id="collection-search" placeholder="Rechercher dans ma collection...">
+                </div>
+                <div class="sort-options">
+                    <select id="sort-by">
+                        <option value="date">Date d'ajout</option>
+                        <option value="name">Nom</option>
+                        <option value="set">Set</option>
+                        <option value="price">Prix</option>
+                    </select>
+                    <button id="sort-order" class="btn" title="Inverser l'ordre">↑</button>
+                </div>
+            </div>
+            <div class="filters-row">
+                <select id="filter-collection-set">
+                    <option value="">Tous les sets</option>
+                </select>
+                <button id="export-btn" class="btn btn-primary">Exporter ma collection</button>
+                <button id="clear-btn" class="btn btn-danger">Vider la collection</button>
+            </div>
+        </section>
+
+        <!-- Section des cartes -->
+        <section id="collection-section">
+            <div id="collection-container" class="cards-grid">
+                <!-- Les cartes de la collection seront affichées ici -->
+                <p class="placeholder">Votre collection est vide. Allez dans la page "Recherche" pour ajouter des cartes !</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>Projet One Piece TCG - 2025</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/config.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/storage.js"></script>
+    <script src="../js/api-mock.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/collection.js"></script>
+</body>
+</html>

@@ -1,0 +1,286 @@
+/* ============================================
+   FICHIER : common.css
+   Rôle    : Styles partagés entre toutes les pages
+   
+   Ce fichier contient :
+   - Variables CSS (couleurs, espacements)
+   - Reset de base
+   - Styles du header et navigation
+   - Styles du footer
+   - Classes utilitaires réutilisables
+   ============================================ */
+
+/* --- 1. VARIABLES CSS --- */
+:root {
+    /* Couleurs principales */
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    --success-color: #27ae60;
+    --warning-color: #f39c12;
+    
+    /* Couleurs de texte */
+    --text-dark: #2c3e50;
+    --text-light: #7f8c8d;
+    --text-white: #ffffff;
+    
+    /* Couleurs de fond */
+    --bg-light: #f5f5f5;
+    --bg-white: #ffffff;
+    --bg-dark: #2c3e50;
+    
+    /* Espacements */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 3rem;
+    
+    /* Bordures */
+    --border-radius: 8px;
+    --border-light: 1px solid #ddd;
+    
+    /* Ombres */
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+    
+    /* Typographie */
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.25rem;
+    --font-size-xl: 1.5rem;
+    --font-size-2xl: 2rem;
+}
+
+/* --- 2. RESET ET BASE --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- 3. HEADER ET NAVIGATION --- */
+header {
+    background-color: var(--primary-color);
+    color: var(--text-white);
+    padding: var(--spacing-md);
+    box-shadow: var(--shadow-md);
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+}
+
+header h1 {
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+}
+
+header h1 a {
+    color: var(--text-white);
+    text-decoration: none;
+}
+
+header h1 a:hover {
+    opacity: 0.9;
+}
+
+header .tagline {
+    font-size: var(--font-size-sm);
+    opacity: 0.8;
+    margin-top: var(--spacing-xs);
+}
+
+/* Navigation */
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: var(--text-white);
+    text-decoration: none;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius);
+    transition: background-color 0.3s ease;
+    font-weight: 500;
+}
+
+nav a:hover,
+nav a.active {
+    background-color: rgba(255,255,255,0.2);
+}
+
+/* --- 4. CONTENU PRINCIPAL --- */
+main {
+    flex: 1;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: var(--spacing-md);
+}
+
+/* Sections */
+section {
+    background-color: var(--bg-white);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+section h2 {
+    color: var(--primary-color);
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--spacing-sm);
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: var(--spacing-xs);
+}
+
+/* --- 5. FOOTER --- */
+footer {
+    background-color: var(--primary-color);
+    color: var(--text-white);
+    text-align: center;
+    padding: var(--spacing-sm);
+    margin-top: auto;
+}
+
+footer p {
+    font-size: var(--font-size-sm);
+    opacity: 0.8;
+}
+
+/* --- 6. CLASSES UTILITAIRES --- */
+
+/* Messages */
+.loading,
+.error,
+.placeholder,
+.success {
+    text-align: center;
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);
+}
+
+.loading {
+    color: var(--secondary-color);
+    font-style: italic;
+}
+
+.error {
+    color: var(--accent-color);
+    background-color: rgba(231, 76, 60, 0.1);
+}
+
+.placeholder {
+    color: var(--text-light);
+    font-style: italic;
+}
+
+.success {
+    color: var(--success-color);
+    background-color: rgba(39, 174, 96, 0.1);
+}
+
+/* Boutons */
+.btn {
+    display: inline-block;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: var(--font-size-base);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.btn-primary {
+    background-color: var(--secondary-color);
+    color: var(--text-white);
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+}
+
+.btn-danger {
+    background-color: var(--accent-color);
+    color: var(--text-white);
+}
+
+.btn-danger:hover {
+    background-color: #c0392b;
+}
+
+.btn-success {
+    background-color: var(--success-color);
+    color: var(--text-white);
+}
+
+.btn-success:hover {
+    background-color: #219a52;
+}
+
+/* Formulaires */
+input[type="text"],
+input[type="search"],
+select {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-size-base);
+    border: var(--border-light);
+    border-radius: var(--border-radius);
+    width: 100%;
+    max-width: 400px;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="search"]:focus,
+select:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+}
+
+/* Grille de cartes */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--spacing-sm);
+}
+
+/* --- 7. RESPONSIVE --- */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    nav ul {
+        justify-content: center;
+    }
+    
+    .cards-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+}

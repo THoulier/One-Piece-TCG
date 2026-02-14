@@ -1,130 +1,145 @@
 /* ============================================
    FICHIER : index.css
-   Rôle    : Styles pour la page index.html
+   Rôle    : Styles spécifiques à la page d'accueil
    ============================================ */
 
-/* --- 1. RESET ET BASE --- */
-/* Supprime les marges/paddings par défaut du navigateur */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Style de base pour toute la page */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    color: #333;
-    line-height: 1.6;
-}
-
-/* --- 2. HEADER (En-tête) --- */
-header {
-    background-color: #2c3e50;
-    color: white;
+/* --- Section d'accueil --- */
+#welcome-section {
     text-align: center;
-    padding: 2rem;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
 }
 
-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
+#welcome-section h2 {
+    color: white;
+    border-bottom-color: rgba(255,255,255,0.3);
+    font-size: var(--font-size-2xl);
 }
 
-header p {
-    font-size: 1.2rem;
+#welcome-section p {
+    font-size: var(--font-size-lg);
+    margin: var(--spacing-sm) 0;
     opacity: 0.9;
 }
 
-/* --- 3. MAIN (Contenu principal) --- */
-main {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 1rem;
+.quick-links {
+    display: flex;
+    gap: var(--spacing-sm);
+    justify-content: center;
+    margin-top: var(--spacing-md);
+    flex-wrap: wrap;
 }
 
-/* Section de recherche */
-#search-section {
-    background-color: white;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    margin-bottom: 2rem;
+.quick-links .btn {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-lg);
+}
+
+/* --- Section cartes favorites --- */
+#featured-section {
+    background-color: rgba(241, 196, 15, 0.1);
+}
+
+#featured-section h2 {
+    color: var(--warning-color);
+    border-bottom-color: var(--warning-color);
+}
+
+/* --- Section aperçu collection --- */
+#preview-section h2 {
+    color: var(--success-color);
+    border-bottom-color: var(--success-color);
+}
+
+.section-footer {
     text-align: center;
+    margin-top: var(--spacing-md);
 }
 
-#search-section h2 {
-    margin-bottom: 1rem;
-    color: #2c3e50;
+/* --- Style des cartes --- */
+#featured-container .card,
+#preview-container .card {
+    background: var(--bg-white);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Champ de recherche */
-#search-input {
-    padding: 0.8rem 1rem;
-    font-size: 1rem;
-    border: 2px solid #ddd;
-    border-radius: 4px;
-    width: 300px;
-    margin-right: 0.5rem;
+#featured-container .card:hover,
+#preview-container .card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
 }
 
-/* Effet au focus (quand on clique dans le champ) */
-#search-input:focus {
-    outline: none;
-    border-color: #3498db;
+#featured-container .card img,
+#preview-container .card img {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
-/* Bouton de recherche */
-#search-button {
-    padding: 0.8rem 1.5rem;
-    font-size: 1rem;
-    background-color: #3498db;
+#featured-container .card-info,
+#preview-container .card-info {
+    padding: var(--spacing-sm);
+}
+
+#featured-container .card-info h3,
+#preview-container .card-info h3 {
+    font-size: var(--font-size-base);
+    margin-bottom: var(--spacing-xs);
+}
+
+#featured-container .card-id,
+#preview-container .card-id {
+    font-size: var(--font-size-sm);
+    color: var(--text-light);
+    font-family: monospace;
+}
+
+#featured-container .card-type,
+#preview-container .card-type {
+    display: inline-block;
+    background-color: var(--secondary-color);
     color: white;
-    border: none;
+    padding: 2px 8px;
     border-radius: 4px;
-    cursor: pointer;
+    font-size: var(--font-size-sm);
+    margin-top: var(--spacing-xs);
 }
 
-/* Effet au survol du bouton */
-#search-button:hover {
-    background-color: #2980b9;
+#featured-container .card-price,
+#preview-container .card-price {
+    margin-top: var(--spacing-xs);
+    font-weight: 700;
+    color: var(--success-color);
 }
 
-/* Section des résultats */
-#results-section {
-    background-color: white;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-#results-section h2 {
-    margin-bottom: 1rem;
-    color: #2c3e50;
-}
-
-/* Conteneur des cartes */
-#cards-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1rem;
-}
-
-/* Message placeholder */
-.placeholder {
-    color: #999;
-    font-style: italic;
-    text-align: center;
-    grid-column: 1 / -1;
-    padding: 2rem;
-}
-
-/* --- 4. FOOTER (Pied de page) --- */
-footer {
-    background-color: #2c3e50;
+/* Badge favori */
+.favorite-badge {
+    position: absolute;
+    top: var(--spacing-xs);
+    right: var(--spacing-xs);
+    background-color: var(--warning-color);
     color: white;
-    text-align: center;
-    padding: 1rem;
-    margin-top: 2rem;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: var(--shadow-sm);
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    .quick-links {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .quick-links .btn {
+        width: 100%;
+    }
 }

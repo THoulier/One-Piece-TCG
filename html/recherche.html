@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recherche - One Piece TCG</title>
+    <!-- CSS commun -->
+    <link rel="stylesheet" href="../css/common.css">
+    <!-- CSS spécifique -->
+    <link rel="stylesheet" href="../css/recherche.css">
+</head>
+<body>
+    <!-- Header avec navigation -->
+    <header>
+        <div class="header-content">
+            <div>
+                <h1><a href="../html/index.html">One Piece TCG</a></h1>
+                <p class="tagline">Répertoire et recherche de cartes</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../html/index.html">Accueil</a></li>
+                    <li><a href="../html/collection.html">Ma Collection</a></li>
+                    <li><a href="../html/recherche.html" class="active">Recherche</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contenu principal -->
+    <main>
+        <!-- Section de recherche -->
+        <section id="search-section">
+            <h2>Rechercher des cartes</h2>
+            <div class="search-controls">
+                <input type="search" id="search-input" placeholder="Nom de la carte, ID, type...">
+                <button id="search-button" class="btn btn-primary">Rechercher</button>
+            </div>
+            <p class="search-info">Tapez au moins 2 caractères pour lancer la recherche</p>
+        </section>
+
+        <!-- Section de filtres -->
+        <section id="filters-section">
+            <h3>Filtres</h3>
+            <div class="filters">
+                <select id="filter-set">
+                    <option value="">Tous les sets</option>
+                    <option value="OP01">Romance Dawn (OP01)</option>
+                    <option value="OP02">Paramount War (OP02)</option>
+                    <option value="OP03">Pillars of Strength (OP03)</option>
+                    <option value="OP04">Kingdoms of Intrigue (OP04)</option>
+                    <option value="OP05">Awakening of the New Era (OP05)</option>
+                    <option value="OP06">Wings of the Captain (OP06)</option>
+                    <option value="OP07">500 Years in the Future (OP07)</option>
+                    <option value="OP08">Two Legends (OP08)</option>
+                    <option value="OP09">Emperors in the New World (OP09)</option>
+                    <option value="OP10">Royal Blood (OP10)</option>
+                    <option value="OP11">A Fist of Divine Speed (OP11)</option>
+                    <option value="OP12">Treasure of the King (OP12)</option>
+                    <option value="OP13">Supernova Assault (OP13)</option>
+                    <option value="OP14">3D2Y (OP14)</option>
+                </select>
+
+                <select id="filter-color">
+                    <option value="">Toutes les couleurs</option>
+                    <option value="Red">Rouge</option>
+                    <option value="Blue">Bleu</option>
+                    <option value="Green">Vert</option>
+                    <option value="Yellow">Jaune</option>
+                    <option value="Black">Noir</option>
+                    <option value="Purple">Violet</option>
+                </select>
+
+                <select id="filter-type">
+                    <option value="">Tous les types</option>
+                    <option value="Leader">Leader</option>
+                    <option value="Character">Personnage</option>
+                    <option value="Event">Événement</option>
+                    <option value="Stage">Stage</option>
+                </select>
+            </div>
+        </section>
+
+        <!-- Section des résultats -->
+        <section id="results-section">
+            <div class="results-header">
+                <h2>Résultats</h2>
+                <span id="results-count"></span>
+            </div>
+            <div id="cards-container" class="cards-grid">
+                <!-- Les cartes seront affichées ici -->
+                <p class="placeholder">Utilisez la barre de recherche pour trouver des cartes...</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>Projet One Piece TCG - 2025</p>
+    </footer>
+
+    <!-- Scripts (ordre important : config → utils → storage → api → page spécifique) -->
+    <script src="../js/config.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/storage.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/recherche.js"></script>
+</body>
+</html>

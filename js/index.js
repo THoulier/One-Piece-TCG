@@ -1,153 +1,147 @@
 /**
  * FICHIER : index.js
- * Rôle    : Logique JavaScript pour la page index.html
- *
- * Ce fichier gère :
- * - La récupération des données des cartes
- * - La recherche de cartes
- * - L'affichage des résultats
+ * Rôle    : Logique de la page d'accueil
+ * 
+ * Fonctionnalités :
+ * - Affichage des cartes favorites (featured)
+ * - Affichage d'un aperçu de la collection (10 dernières cartes)
+ * - Liens rapides vers les autres pages
  */
 
-// ============================================
-// 1. DONNÉES DE TEST (Temporaires)
-// ============================================
-// En attendant une vraie source de données, on utilise ces cartes fictives
-const mockCards = [
-    {
-        id: 1,
-        name: "Monkey D. Luffy",
-        type: "Leader",
-        color: "Red",
-        image: "https://via.placeholder.com/200x280/FF6B6B/FFFFFF?text=Luffy"
-    },
-    {
-        id: 2,
-        name: "Roronoa Zoro",
-        type: "Character",
-        color: "Green",
-        image: "https://via.placeholder.com/200x280/4ECDC4/FFFFFF?text=Zoro"
-    },
-    {
-        id: 3,
-        name: "Nami",
-        type: "Character",
-        color: "Blue",
-        image: "https://via.placeholder.com/200x280/45B7D1/FFFFFF?text=Nami"
-    },
-    {
-        id: 4,
-        name: "Sanji",
-        type: "Character",
-        color: "Black",
-        image: "https://via.placeholder.com/200x280/2C3E50/FFFFFF?text=Sanji"
-    },
-    {
-        id: 5,
-        name: "Shanks",
-        type: "Leader",
-        color: "Red",
-        image: "https://via.placeholder.com/200x280/E74C3C/FFFFFF?text=Shanks"
-    }
-];
+// Éléments DOM
+const featuredContainer = document.getElementById('featured-container');
+const previewContainer = document.getElementById('preview-container');
 
 // ============================================
-// 2. SÉLECTION DES ÉLÉMENTS HTML
+// INITIALISATION
 // ============================================
-// On "attrape" les éléments dont on a besoin pour interagir avec eux
-const searchInput = document.getElementById('search-input');
-const searchButton = document.getElementById('search-button');
-const cardsContainer = document.getElementById('cards-container');
+
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('Page d\'accueil initialisée');
+    
+    loadFeaturedCards();
+    loadCollectionPreview();
+});
 
 // ============================================
-// 3. FONCTIONS
+// CARTES FAVORITES (FEATURED)
 // ============================================
 
 /**
- * Affiche les cartes dans le conteneur
- * @param {Array} cards - Tableau de cartes à afficher
+ * Charge et affiche les cartes favorites
  */
-function displayCards(cards) {
-    // Vide le conteneur avant d'afficher de nouvelles cartes
-    cardsContainer.innerHTML = '';
-
-    // Si aucune carte ne correspond
-    if (cards.length === 0) {
-        cardsContainer.innerHTML = '<p class="placeholder">Aucune carte trouvée...</p>';
+function loadFeaturedCards() {
+    const favorites = getFavoriteCards();
+    const limit = CONFIG.DISPLAY.FEATURED_COUNT;
+    
+    // Prend les 10 premières cartes favorites (ou moins si pas assez)
+    const featuredCards = favorites.slice(0, limit);
+    
+    featuredContainer.innerHTML = '';
+    
+    if (featuredCards.length === 0) {
+        showEmpty(featuredContainer, 'Aucune carte favorite. Ajoutez des cartes à vos favoris depuis votre collection !');
         return;
     }
-
-    // Crée et ajoute chaque carte au conteneur
-    cards.forEach(card => {
-        const cardElement = createCardElement(card);
-        cardsContainer.appendChild(cardElement);
+    
+    featuredCards.forEach(card => {
+        const cardElement = createFeaturedCardElement(card);
+        featuredContainer.appendChild(cardElement);
     });
 }
 
 /**
- * Crée l'élément HTML pour une carte
- * @param {Object} card - Objet carte avec name, type, color, image
- * @returns {HTMLElement} - Élément div représentant la carte
+ * Crée un élément carte pour la section featured
  */
-function createCardElement(card) {
+function createFeaturedCardElement(card) {
     const div = document.createElement('div');
     div.className = 'card';
-    div.innerHTML = `
-        <img src="${card.image}" alt="${card.name}">
-        <h3>${card.name}</h3>
-        <p>Type: ${card.type}</p>
-        <p>Couleur: ${card.color}</p>
+    div.style.position = 'relative';
+    
+    // Badge favori
+    const badge = document.createElement('div');
+    badge.className = 'favorite-badge';
+    badge.innerHTML = '★';
+    badge.title = 'Carte favorite';
+    
+    // Image
+    const img = document.createElement('img');
+    img.src = card.image_url || 'https://via.placeholder.com/200x280?text=No+Image';
+    img.alt = card.name || 'Carte';
+    img.loading = 'lazy';
+    
+    // Informations
+    const info = document.createElement('div');
+    info.className = 'card-info';
+    info.innerHTML = `
+        <h3>${formatCardName(card.name || 'Carte sans nom')}</h3>
+        <p class="card-id">${card.id || card.card_id || 'ID inconnu'}</p>
+        <span class="card-type">${card.type || 'Type inconnu'}</span>
+        ${card.price ? `<p class="card-price">${formatPrice(card.price)}</p>` : ''}
     `;
+    
+    div.appendChild(badge);
+    div.appendChild(img);
+    div.appendChild(info);
+    
     return div;
 }
 
+// ============================================
+// APERÇU DE LA COLLECTION
+// ============================================
+
 /**
- * Filtre les cartes selon le terme de recherche
- * @param {string} searchTerm - Terme recherché
- * @returns {Array} - Cartes filtrées
+ * Charge et affiche un aperçu de la collection (10 dernières cartes)
  */
-function searchCards(searchTerm) {
-    const term = searchTerm.toLowerCase().trim();
-
-    // Si le champ est vide, affiche toutes les cartes
-    if (term === '') {
-        return mockCards;
+function loadCollectionPreview() {
+    const collection = getCollection();
+    const limit = CONFIG.DISPLAY.FEATURED_COUNT;
+    
+    // Prend les 10 dernières cartes ajoutées
+    const recentCards = collection
+        .sort((a, b) => new Date(b.dateAdded || 0) - new Date(a.dateAdded || 0))
+        .slice(0, limit);
+    
+    previewContainer.innerHTML = '';
+    
+    if (recentCards.length === 0) {
+        showEmpty(previewContainer, 'Votre collection est vide. Commencez à ajouter des cartes !');
+        return;
     }
-
-    // Filtre les cartes qui contiennent le terme recherché
-    return mockCards.filter(card =>
-        card.name.toLowerCase().includes(term) ||
-        card.type.toLowerCase().includes(term) ||
-        card.color.toLowerCase().includes(term)
-    );
+    
+    recentCards.forEach(card => {
+        const cardElement = createPreviewCardElement(card);
+        previewContainer.appendChild(cardElement);
+    });
 }
 
 /**
- * Gère l'action de recherche
+ * Crée un élément carte pour l'aperçu de la collection
  */
-function handleSearch() {
-    const searchTerm = searchInput.value;
-    const results = searchCards(searchTerm);
-    displayCards(results);
+function createPreviewCardElement(card) {
+    const div = document.createElement('div');
+    div.className = 'card';
+    
+    // Image
+    const img = document.createElement('img');
+    img.src = card.card_image || 'https://via.placeholder.com/200x280?text=No+Image';
+    img.alt = card.card_name || 'Carte';
+    img.loading = 'lazy';
+    
+    // Informations
+    const info = document.createElement('div');
+    info.className = 'card-info';
+    info.innerHTML = `
+        <h3>${formatCardName(card.card_name || 'Carte sans nom')}</h3>
+        <p class="card-id">${card.card_set_id}</p>
+        <span class="card-type">${card.card_type || 'Type inconnu'}</span>
+        <span class="card-color" data-color="${card.card_color || 'Unknown'}">${card.card_color || '?'}</span>
+        ${card.market_price ? `<p class="card-price">${formatPrice(card.market_price)}</p>` : ''}
+    `;
+    
+    div.appendChild(img);
+    div.appendChild(info);
+    
+    return div;
 }
-
-// ============================================
-// 4. ÉVÉNEMENTS (Interactions utilisateur)
-// ============================================
-
-// Quand on clique sur le bouton "Rechercher"
-searchButton.addEventListener('click', handleSearch);
-
-// Quand on appuie sur "Entrée" dans le champ de recherche
-searchInput.addEventListener('keypress', function(event) {
-    if (event.key === 'Enter') {
-        handleSearch();
-    }
-});
-
-// ============================================
-// 5. INITIALISATION
-// ============================================
-// Affiche toutes les cartes au chargement de la page
-displayCards(mockCards);
-
-console.log('One Piece TCG - Application initialisée !');

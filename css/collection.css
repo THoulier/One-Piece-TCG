@@ -1,0 +1,223 @@
+/* ============================================
+   FICHIER : collection.css
+   Rôle    : Styles spécifiques à la page de collection
+   ============================================ */
+
+/* --- Section statistiques --- */
+#stats-section {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+}
+
+#stats-section h2 {
+    color: white;
+    border-bottom-color: rgba(255,255,255,0.3);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-sm);
+}
+
+.stat-card {
+    background-color: rgba(255,255,255,0.2);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+
+.stat-number {
+    display: block;
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    margin-bottom: var(--spacing-xs);
+}
+
+.stat-label {
+    font-size: var(--font-size-sm);
+    opacity: 0.9;
+}
+
+/* --- Contrôles de la collection --- */
+#collection-controls {
+    background-color: rgba(52, 152, 219, 0.1);
+}
+
+.controls-row {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.search-box {
+    flex: 1;
+    min-width: 200px;
+}
+
+.search-box input {
+    width: 100%;
+}
+
+.sort-options {
+    display: flex;
+    gap: var(--spacing-xs);
+}
+
+#sort-order {
+    min-width: 40px;
+}
+
+.filters-row {
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#filter-collection-set {
+    min-width: 200px;
+}
+
+/* --- Style des cartes dans la collection --- */
+#collection-container .card {
+    position: relative;
+    background: var(--bg-white);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#collection-container .card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+#collection-container .card img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+#collection-container .card-info {
+    padding: var(--spacing-sm);
+}
+
+#collection-container .card-info h3 {
+    font-size: var(--font-size-base);
+    margin-bottom: var(--spacing-xs);
+}
+
+#collection-container .card-id {
+    font-size: var(--font-size-sm);
+    color: var(--text-light);
+    font-family: monospace;
+}
+
+#collection-container .card-type {
+    display: inline-block;
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: var(--font-size-sm);
+    margin-top: var(--spacing-xs);
+}
+
+#collection-container .card-color {
+    display: inline-block;
+    margin-left: var(--spacing-xs);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+}
+
+#collection-container .card-price {
+    margin-top: var(--spacing-xs);
+    font-weight: 700;
+    color: var(--success-color);
+}
+
+#collection-container .date-added {
+    font-size: var(--font-size-sm);
+    color: var(--text-light);
+    margin-top: var(--spacing-xs);
+}
+
+/* --- Boutons d'action sur les cartes --- */
+.card-actions {
+    position: absolute;
+    top: var(--spacing-xs);
+    right: var(--spacing-xs);
+    display: flex;
+    gap: var(--spacing-xs);
+}
+
+.card-action-btn {
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-favorite {
+    background-color: rgba(241, 196, 15, 0.9);
+    color: white;
+}
+
+.btn-favorite:hover,
+.btn-favorite.active {
+    background-color: #f1c40f;
+}
+
+.btn-remove {
+    background-color: rgba(231, 76, 60, 0.9);
+    color: white;
+}
+
+.btn-remove:hover {
+    background-color: #c0392b;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    .controls-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .sort-options {
+        justify-content: stretch;
+    }
+    
+    .sort-options select,
+    .sort-options button {
+        flex: 1;
+    }
+    
+    .filters-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .filters-row select,
+    .filters-row button {
+        width: 100%;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+}

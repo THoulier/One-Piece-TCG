@@ -32,9 +32,15 @@
         <!-- Section de recherche -->
         <section id="search-section">
             <h2>Rechercher des cartes</h2>
-            <div class="search-controls">
-                <input type="search" id="search-input" placeholder="Nom de la carte, ID, type...">
-                <button id="search-button" class="btn btn-primary">Rechercher</button>
+            <div class="search-container">
+                <div class="search-input-wrapper">
+                    <input type="search" id="search-input" placeholder="Nom de la carte, ID, type..." autocomplete="off">
+                    <div id="search-suggestions" class="search-suggestions"></div>
+                </div>
+                <div class="search-buttons">
+                    <button id="search-button" class="btn btn-primary">Rechercher</button>
+                    <button id="reset-button" class="btn btn-secondary">Réinitialiser</button>
+                </div>
             </div>
             <p class="search-info">Tapez au moins 2 caractères pour lancer la recherche</p>
         </section>
